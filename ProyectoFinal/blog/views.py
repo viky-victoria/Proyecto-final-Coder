@@ -78,3 +78,14 @@ def procesar_seccion(request):
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-seccion.html", context=contexto)
         
+
+def formulario_buscar(request):
+    
+    return render(request, "blog/formulario_buscar.html")
+
+
+
+
+def formulario_borrar(request):
+    
+    return render(request, "blog/formulario_borrar.html")

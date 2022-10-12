@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from blog.views import formulario_buscar, formulario_borrar
 
 from blog.views import ver_inicio, procesar_autor, procesar_articulo, procesar_seccion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ver_inicio/', ver_inicio),
+    #path('ver_inicio/', ver_inicio),
     path('f-autor/', procesar_autor ),
     path('f-articulo/', procesar_articulo),
     path('f-seccion/', procesar_seccion),
+    path('formulario_buscar/', formulario_buscar),
+    path('formulario_borrar/', formulario_borrar),
 ]
+    
