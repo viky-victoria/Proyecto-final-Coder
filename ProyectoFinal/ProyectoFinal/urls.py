@@ -20,6 +20,7 @@ from blog.views import ver_inicio, procesar_autor, procesar_articulo, procesar_s
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ver_inicio/', ver_inicio),
     path('f-autor/', procesar_autor ),
     path('f-articulo/', procesar_articulo),
     path('f-seccion/', procesar_seccion),

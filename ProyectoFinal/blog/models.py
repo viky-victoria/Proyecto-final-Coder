@@ -24,7 +24,7 @@ class  Articulo(models.Model):
     fecha=models.DateField(null=True)
     
     def __str__(self):
-        return self.nombre   
+        return self.titulo   
 
 
 class Seccion(models.Model):

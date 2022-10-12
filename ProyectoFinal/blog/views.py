@@ -1,9 +1,10 @@
 from multiprocessing import context
 from django.shortcuts import render
-#from django.http import HttpResponse
+from django.http import HttpResponse
+from blog.models import Autor, Seccion, Articulo
 
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
-from blog.models import Articulo
+
 
 # Create your views here.
 
@@ -12,15 +13,29 @@ def ver_inicio(request):
 
 
 def procesar_autor(request):
-    mi_formulario= AutorForm()
-    contexto= {"formulario": mi_formulario}
-    return render(request, "blog/f-autor.html", context=contexto)
+    if request.method =="GET":
+        mi_formulario= AutorForm()
+        contexto= {"formulario": mi_formulario}
+        return render(request, "blog/f-autor.html", context=contexto)
+    
+    if request.method =="POST":
+        mi_formulario= AutorForm(request.POST)
+        if mi_formulario.is_valid():
+            dato_ingresado= mi_formulario.cleaned_data
+            nuevo_modelo= Autor(
+                nombre= dato_ingresado["nombre"],
+                apellido= dato_ingresado["apellido"],
+                fecha= dato_ingresado["fecha"],
+            )
+            nuevo_modelo.save()
+            
+            return render(request, "blog/exito.html")
+        contexto={"formulario": mi_formulario}
+        return render(request, "blog/f-autor.html", context=contexto)
 
 
 def procesar_articulo(request):
-    
-    breakpoint()
-    
+        
     if request.method =="GET":
         mi_formulario= ArticuloForm()
         contexto= {"formulario": mi_formulario}
@@ -28,16 +43,38 @@ def procesar_articulo(request):
     
     if request.method =="POST":
         mi_formulario= ArticuloForm(request.POST)
-        dato_ingresado= mi_formulario.cleaned_data
-        nuevo_modelo= Articulo(
-        titulo= dato_ingresado["texto"],
-        texto= dato_ingresado["texto"],
-        fecha= dato_ingresado["texto"],
-        )
-    nuevo_modelo.save()
+        if mi_formulario.is_valid():
+            dato_ingresado= mi_formulario.cleaned_data
+            nuevo_modelo= Articulo(
+                titulo= dato_ingresado["titulo"],
+                texto= dato_ingresado["texto"],
+                fecha= dato_ingresado["fecha"],
+            )
+            nuevo_modelo.save()
+            
+            return render(request, "blog/exito.html")
+        contexto={"formulario": mi_formulario}
+        return render(request, "blog/f-articulo.html", context=contexto)
         
 
 def procesar_seccion(request):
-    mi_formulario= SeccionForm()
-    contexto= {"formulario": mi_formulario}
-    return render(request, "blog/f-seccion.html", context=contexto)
+    if request.method =="GET":
+        mi_formulario= SeccionForm()
+        contexto= {"formulario": mi_formulario}
+        return render(request, "blog/f-seccion.html", context=contexto)
+    
+    if request.method =="POST":
+        mi_formulario= SeccionForm(request.POST)
+        if mi_formulario.is_valid():
+            dato_ingresado= mi_formulario.cleaned_data
+            nuevo_modelo= Seccion(
+                titulo= dato_ingresado["titulo"],
+                texto= dato_ingresado["texto"],
+                fecha= dato_ingresado["fecha"],
+            )
+            nuevo_modelo.save()
+            
+            return render(request, "blog/exito.html")
+        contexto={"formulario": mi_formulario}
+        return render(request, "blog/f-seccion.html", context=contexto)
+        
