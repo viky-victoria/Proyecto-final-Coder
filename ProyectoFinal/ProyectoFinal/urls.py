@@ -18,6 +18,21 @@ from django.urls import path
 from blog.views import formulario_buscar, formulario_borrar
 
 from blog.views import ver_inicio, procesar_autor, procesar_articulo, procesar_seccion
+'''from blog.views import (
+    CursoDelete,
+    CursoDetalle,
+    CursoUpdateView,
+    CursoList,
+    CursoCreacion,
+    busqueda_de_curso,
+    listar_cursos,
+    buscar_curso,
+    MyLogin,
+    MyLogout,
+    login_request,
+    mostrar_inicio,
+    register,
+)'''
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +42,10 @@ urlpatterns = [
     path('f-seccion/', procesar_seccion),
     path('formulario_buscar/', formulario_buscar),
     path('formulario_borrar/', formulario_borrar),
+    #path('MyLogin/', Mylogin),
+    #path('MyLogout/', Mylogout),
+    #path('mostrar_inicio/', mostrar_inicio),
+    #path('register/', register),
+    
 ]
     
