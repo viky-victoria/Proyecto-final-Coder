@@ -1,10 +1,17 @@
-{% extends "AppCoder23/madre.html" %}
+{% extends "AppCoder24/madre.html" %}
 
 {% block inserte_aqui_su_contenido %}
+
+<h4>Editar perfil de: <i>{{ user }}</i></h4>
+
 <form action="" method="POST">
+
     {% csrf_token %}
+
     {{ form.as_p }}
-    <br><br>
-    <button type="submit" name="Iniciar Sesion">Login</button>
+
+    <input type="submit" value="Submit" />
+
 </form>
+
 {% endblock %}

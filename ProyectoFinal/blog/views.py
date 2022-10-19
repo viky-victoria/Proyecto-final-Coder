@@ -4,12 +4,19 @@ from django.http import HttpResponse
 from blog.models import Autor, Seccion, Articulo
 
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
 def ver_inicio(request):
+    return render (request, "blog/ver_inicio.html")
+
+
+
+def inicio(request):
     return render (request, "blog/inicio.html")
+
 
 
 def procesar_autor(request):
@@ -32,6 +39,7 @@ def procesar_autor(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-autor.html", context=contexto)
+    
 
 
 def procesar_articulo(request):
@@ -55,6 +63,7 @@ def procesar_articulo(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-articulo.html", context=contexto)
+    
         
 
 def procesar_seccion(request):
@@ -77,6 +86,7 @@ def procesar_seccion(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-seccion.html", context=contexto)
+     
         
 
 def formulario_buscar(request):
@@ -85,7 +95,75 @@ def formulario_buscar(request):
 
 
 
-
 def formulario_borrar(request):
     
     return render(request, "blog/formulario_borrar.html")
+
+
+def busqueda(request):
+    
+    return render(request, "blog/busqueda.html")
+
+
+
+def editar_perfil(request):
+    
+    return render(request, "blog/editar_perfil.html")
+
+
+
+def login(request):
+
+    return render(request, "blog/login.html")
+
+
+
+def login_request(request):
+    
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        
+        if form.is_valid():
+            user = form.cleaned_data.get("Username")
+            password = form.cleaned_data.get("Password")
+            
+            user = authenticate(username=user, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return render(request, "blog/ver_inicio.html", {"mensaje": f"Bienvenido/a {user}"})
+            else:
+                return render(request, "blog/ver_inicio.html", {"mensaje": "ERROR, Datos incorrectos"})
+        else:
+                return render(request, "blog/ver_inicio.html", {"mensaje": "ERROR, Formulario incorrecto"})
+    
+    form = AuthenticationForm()
+    
+    return render(request, "blog/login.html", {"form": form})
+
+
+
+def registro(request):
+     if request.method == "POST":
+         
+        form = UserCreationForm(request.POST)         
+        if form.is_valid():
+            
+            user = form.cleaned.data["Username"]
+            form.save()
+            return render(request, "blog/ver_inicio.html", {"Mensaje:" "Usuario creado"})
+         
+        
+        else:
+        
+            form = UserCreationFrom()
+            #form = UserRegisterForm()
+        
+        return render(request, "blog/registro.html", {"form":form})
+    
+    
+
+
+def logout(request):
+    
+    return render(request, "blog/logout.html")

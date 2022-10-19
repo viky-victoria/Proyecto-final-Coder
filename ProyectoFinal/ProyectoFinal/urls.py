@@ -14,38 +14,42 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from blog.views import formulario_buscar, formulario_borrar
+from django.urls import path, include
 
 from blog.views import ver_inicio, procesar_autor, procesar_articulo, procesar_seccion
-'''from blog.views import (
-    CursoDelete,
-    CursoDetalle,
-    CursoUpdateView,
-    CursoList,
-    CursoCreacion,
-    busqueda_de_curso,
-    listar_cursos,
-    buscar_curso,
-    MyLogin,
-    MyLogout,
+from blog.views import (
+    formulario_borrar,
+    formulario_buscar,
+    editar_perfil,
+    busqueda,
+    login,
+    logout,
     login_request,
-    mostrar_inicio,
-    register,
-)'''
+    registro,
+    inicio,
+)
+
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('ver_inicio/', ver_inicio),
+    path("blog/", include("blog.urls")),
+    path("proyectofinal/", include("proyectofinal.urls")),
+    path('ver_inicio/', ver_inicio),
     path('f-autor/', procesar_autor ),
     path('f-articulo/', procesar_articulo),
     path('f-seccion/', procesar_seccion),
     path('formulario_buscar/', formulario_buscar),
     path('formulario_borrar/', formulario_borrar),
-    #path('MyLogin/', Mylogin),
-    #path('MyLogout/', Mylogout),
-    #path('mostrar_inicio/', mostrar_inicio),
-    #path('register/', register),
+    path('editar_perfil/', editar_perfil),
+    path('ve_inicio/',ver_inicio),
+    path('inicio/',inicio),
+    path('login/', views.login_request, name = "Login"),
+    path('registro/', views.registro, name = "Registro"),
+    path('logout/', LogoutView.as_view(template_name = "blog/logout.html"), name = "Logout"),
+    path('login_request/',login_request),
     
 ]
     
