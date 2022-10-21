@@ -1,0 +1,24 @@
+{% extends "AppCoder23/madre.html" %}
+
+    <title> Registro </title>
+</head>
+</body>
+
+    {% block inserte_aqui_su_contenido %}
+
+    <form action="" method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+    <br><br>
+    <button type="submit"> Registrarse </button>
+
+    </form>
+    
+    {% endblock %}
+
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+</head>
+<body style="background-color: rgb(87, 246, 233);">
+<h2> Aplicacion: Blog </h2>
+</body>
+</html>
+
+<ul>
+    <li>Tema: Templates</li>
+    <li>Curso: Python</li>
+</ul>
+
+<a href="{% url 'busqueda' %}">Busqueda</a>
+<a href="{% url 'editar_perfil' %}">Editar_perfil</a>
+
+{% if not request.user.is_authenticated %}
+    <a href="{% url 'Login' %}">Login</a>
+{% else %}
+    <a href="{% url 'Logout' %}">Logout</a>
+{% endif %}
+
+
+<br>
+<br>
+
+{% block content %}
+{% endblock content %}
