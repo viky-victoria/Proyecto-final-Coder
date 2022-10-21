@@ -44,7 +44,6 @@ urlpatterns = [
     path('formulario_buscar/', formulario_buscar),
     path('formulario_borrar/', formulario_borrar),
     path('editar_perfil/', editar_perfil),
-    path('ve_inicio/',ver_inicio),
     path('inicio/',inicio),
     path('login/', views.login_request, name = "Login"),
     path('registro/', views.registro, name = "Registro"),
