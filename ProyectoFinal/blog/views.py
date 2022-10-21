@@ -118,48 +118,11 @@ def login(request):
 
 
 
-def login_request(request):
-    
-    if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
-        
-        if form.is_valid():
-            user = form.cleaned_data.get("Username")
-            password = form.cleaned_data.get("Password")
-            
-            user = authenticate(username=user, password=password)
-            
-            if user is not None:
-                login(request, user)
-                return render(request, "blog/ver_inicio.html", {"mensaje": f"Bienvenido/a {user}"})
-            else:
-                return render(request, "blog/ver_inicio.html", {"mensaje": "ERROR, Datos incorrectos"})
-        else:
-                return render(request, "blog/ver_inicio.html", {"mensaje": "ERROR, Formulario incorrecto"})
-    
-    form = AuthenticationForm()
-    
-    return render(request, "blog/login.html", {"form": form})
+from django.contrib.auth.views import LoginView
 
 
-
-def registro(request):
-     if request.method == "POST":
-         
-        form = UserCreationForm(request.POST)         
-        if form.is_valid():
-            
-            user = form.cleaned.data["Username"]
-            form.save()
-            return render(request, "blog/ver_inicio.html", {"Mensaje:" "Usuario creado"})
-         
-        
-        else:
-        
-            form = UserCreationFrom()
-            #form = UserRegisterForm()
-        
-        return render(request, "blog/registro.html", {"form":form})
+class MyLogin(LoginView):
+    template_name = "blog/login.html"
     
     
 

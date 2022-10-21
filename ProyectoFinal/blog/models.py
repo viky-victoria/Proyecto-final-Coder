@@ -4,8 +4,7 @@ from tabnanny import verbose
 from tkinter import Widget
 from turtle import width
 from django.db import models
-from ProyectoFinal.blog.views import formulario_borrar
-from blog.views import registro
+
 
 # Create your models here.
 

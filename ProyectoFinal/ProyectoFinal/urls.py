@@ -24,8 +24,8 @@ from blog.views import (
     busqueda,
     login,
     logout,
-    login_request,
-    registro,
+    MyLogin,
+
     inicio,
 )
 
@@ -35,8 +35,8 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("blog/", include("blog.urls")),
-    path("proyectofinal/", include("proyectofinal.urls")),
+  
+
     path('ver_inicio/', ver_inicio),
     path('f-autor/', procesar_autor ),
     path('f-articulo/', procesar_articulo),
@@ -44,11 +44,11 @@ urlpatterns = [
     path('formulario_buscar/', formulario_buscar),
     path('formulario_borrar/', formulario_borrar),
     path('editar_perfil/', editar_perfil),
-    path('inicio/',inicio),
-    path('login/', views.login_request, name = "Login"),
-    path('registro/', views.registro, name = "Registro"),
-    path('logout/', LogoutView.as_view(template_name = "blog/logout.html"), name = "Logout"),
-    path('login_request/',login_request),
+    path('inicio/',inicio, name = "inicio"),
+    path("login/", MyLogin.as_view(), name="Login"),
+    #path('registro/', views.registro, name = "Registro"),
+    #path('logout/', LogoutView.as_view(template_name = "blog/logout.html"), name = "Logout"),
+    #path('login_request/',login_request),
     
 ]
     

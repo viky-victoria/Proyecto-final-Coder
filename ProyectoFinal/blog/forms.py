@@ -3,7 +3,7 @@ from collections import UserList
 from socket import fromshare
 from django import forms
 
-from ProyectoFinal.blog.views import formulario_borrar
+
 
 
 
@@ -26,7 +26,7 @@ class SeccionForm(forms.Form):
     titulo=forms.CharField(max_length=30)
     
     
-
+'''
 class UserRegiterForm(UserCreationForm):
     
     email = forms.EmailField()
@@ -37,19 +37,7 @@ class UserRegiterForm(UserCreationForm):
         model = UserList
         fields = ["username", "email", "password_1", "password_2"]
         help_texts = {k:"" for k in fields}
+'''  
         
         
         
-        
-class UpdateView(UpdateView):
-    pass
-
-
-
-
-
-class Formulario_Borrar(DeleteView):
-    class Meta:
-    model = formulario_borrar
-    success_url = "/blog/formulario_borrar.html"
-    

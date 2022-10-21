@@ -9,16 +9,15 @@
     <li>Curso: Python</li>
 </ul>
 
-<a href="{% url 'inicio' %}">Inicio</a>
-<a href="">Busqueda</a>
-<a href="">Editar_perfil</a>
+<a href="{% url 'busqueda' %}">Busqueda</a>
+<a href="{% url 'editar_perfil' %}">Editar_perfil</a>
 
 {% if not request.user.is_authenticated %}
     <a href="{% url 'Login' %}">Login</a>
 {% endif %}
 
 {% if request.user.is_authenticated %}
-    <a href="">Logout</a>
+    <a href="{% url 'Logout' %}">Logout</a>
 {% endif %}
 
 <br>
