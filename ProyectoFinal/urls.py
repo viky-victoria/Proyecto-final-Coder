@@ -30,6 +30,11 @@ from django.urls import path, include
 # )
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 34bd1ac3c8851d500b30a64f0a71e3b86c816486
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls")),

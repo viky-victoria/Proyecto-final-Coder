@@ -1,6 +1,6 @@
 </head>
 <body style="background-color: rgb(87, 246, 233);">
-<h2> Aplicacion: blog </h2>
+<h2> Aplicacion: Blog </h2>
 </body>
 </html>
 
@@ -8,6 +8,21 @@
     <li>Tema: Templates</li>
     <li>Curso: Python</li>
 </ul>
+
+<a href="{% url 'inicio' %}">Inicio</a>
+<a href="">Busqueda</a>
+<a href="">Editar_perfil</a>
+
+{% if not request.user.is_authenticated %}
+    <a href="{% url 'Login' %}">Login</a>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <a href="">Logout</a>
+{% endif %}
+
+<br>
+<br>
 
 {% block inserte_aqui_su_contenido %}
 {% endblock %}

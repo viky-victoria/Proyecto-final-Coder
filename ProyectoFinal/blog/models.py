@@ -1,5 +1,10 @@
+from ast import For
+from pyexpat import model
 from tabnanny import verbose
+from tkinter import Widget
+from turtle import width
 from django.db import models
+
 
 # Create your models here.
 
@@ -35,4 +40,8 @@ class Seccion(models.Model):
     
     def __str__(self):
         return self.nombre   
-   
+    
+
+
+
+    

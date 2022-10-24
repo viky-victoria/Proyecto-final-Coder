@@ -4,12 +4,19 @@ from django.http import HttpResponse
 from blog.models import Autor, Seccion, Articulo
 
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
 def ver_inicio(request):
+    return render (request, "blog/ver_inicio.html")
+
+
+
+def inicio(request):
     return render (request, "blog/inicio.html")
+
 
 
 def procesar_autor(request):
@@ -32,6 +39,7 @@ def procesar_autor(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-autor.html", context=contexto)
+    
 
 
 def procesar_articulo(request):
@@ -55,6 +63,7 @@ def procesar_articulo(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-articulo.html", context=contexto)
+    
         
 
 def procesar_seccion(request):
@@ -77,4 +86,47 @@ def procesar_seccion(request):
             return render(request, "blog/exito.html")
         contexto={"formulario": mi_formulario}
         return render(request, "blog/f-seccion.html", context=contexto)
+     
         
+
+def formulario_buscar(request):
+    
+    return render(request, "blog/formulario_buscar.html")
+
+
+
+def formulario_borrar(request):
+    
+    return render(request, "blog/formulario_borrar.html")
+
+
+def busqueda(request):
+    
+    return render(request, "blog/busqueda.html")
+
+
+
+def editar_perfil(request):
+    
+    return render(request, "blog/editar_perfil.html")
+
+
+
+def login(request):
+
+    return render(request, "blog/login.html")
+
+
+
+from django.contrib.auth.views import LoginView
+
+
+class MyLogin(LoginView):
+    template_name = "blog/login.html"
+    
+    
+
+
+def logout(request):
+    
+    return render(request, "blog/logout.html")
